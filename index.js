@@ -240,8 +240,14 @@ async function processInput(userInput) {
     analyzeAndSaveMemory(userInput, fullResponse);
 
   } catch (error) {
-    console.error('\n[!] ★Loki★ would call this "part of the plan.":', error.message);
-  }
+    console.error(
+        '\n[!] ★Loki★ would call this "part of the plan.":',
+        error.message
+    );
+
+    console.error('[DEBUG] Full error:', error);
+    console.error('[DEBUG] Cause:', error.cause);
+}
 }
 
 // --- 4. Başlatıcı ve CLI Döngüsü ---
