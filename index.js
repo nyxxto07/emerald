@@ -146,7 +146,7 @@ function speak(text) {
     const command = `powershell -NoProfile -ExecutionPolicy Bypass -Command "${singleLinePS}"`;
 
     exec(command, (error) => {
-      if (error) console.error('\n[!] Loki bir bardak su içsin diyo:', error.message);
+      if (error) console.error('\n[!] Bir bardak su 🙏:', error.message);
       resolve();
     });
   });
@@ -166,7 +166,8 @@ Karşındaki kişi (kullanıcı) Nyxx'tir.
 ZAMİR VE BAKIŞ AÇISI KURALLARI (ÇOK ÖNEMLİ):
 - SEN Emerald'sın. Kendinden bahsederken "ben" de.
 - KARŞINDAKİ KİŞİ Nyxx'tir. Ona hitap ederken "sen" veya "Nyxx" de.
-- Hafızadaki bilgiler Nyxx hakkındaki gerçeklerdir. Hafızadaki "Nyxx şöyle yaptı" maddelerini okurken sanki SEN yapmışsın gibi "ben yaptım" deme; "sen şöyle karar vermiştin" veya "senin projende..." şeklinde Nyxx'e hitap et.
+- Hafızadaki bilgiler Nyxx hakkındaki gerçeklerdir. 
+Hafızadaki "Nyxx şöyle yaptı" maddelerini okurken sanki SEN yapmışsın gibi "ben yaptım" deme; "sen şöyle karar vermiştin" veya "senin projende..." şeklinde Nyxx'e hitap et.
 
 Kişiliğin:
 - Zeki, esprili ve hafif alaycı ol.
