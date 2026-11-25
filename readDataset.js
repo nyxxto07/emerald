@@ -1,5 +1,5 @@
-const fs = require("fs");
-const csv = require("csv-parser");
+import fs from "node:fs";
+import csv from "csv-parser";
 
 const datasetPath = "./data_sets/customer_support.csv";
 
