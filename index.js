@@ -33,7 +33,7 @@ async function analyzeAndSaveMemory(userInput, assistantResponse) {
   try {
     const memoryPrompt = `Sen Emerald'ın hafıza ajanısın.
 
-Görevin yalnızca kullanıcının (Nyxx) konuşmalarından gelecekte faydalı olacak kalıcı bilgileri çıkarmaktır.
+Görevin yalnızca kullanıcının konuşmalarından gelecekte faydalı olacak kalıcı bilgileri çıkarmaktır.
 
 Kurallar:
 
@@ -66,25 +66,8 @@ Sohbet sırasında oluşan yorumlar
 
 Sadece tek satır yaz.
 Üçüncü şahıs kullan.
-"Nyxx" ile başla.
 Yeni bilgi yoksa yalnızca YOK yaz.
 
-Örnek:
-
-Kullanıcı: "Loki en sevdiğim MCU karakteri."
-Çıktı: Nyxx'in en sevdiği MCU karakteri Loki'dir.
-
-Kullanıcı: "Bugün canım sıkkın."
-Çıktı: YOK
-
-Kullanıcı: "EMERALD isimli kişisel yapay zekâmı geliştiriyorum."
-Çıktı: Nyxx, EMERALD adlı kişisel yapay zekâ projesini geliştiriyor.
-
-Kullanıcı: "Sence Loki nasıl biri?"
-Asistan: "Loki karmaşık bir karakter."
-Çıktı: YOK
-
-Kullanıcı:
 ${userInput}
 
 Asistan:
@@ -155,8 +138,8 @@ function speak(text) {
 // --- 2. Dinamik Hafıza ve Kesin Zamir Kurallı System Prompt ---
 function getSystemPrompt() {
   const savedMemories = loadMemory();
-  const memoryContext = savedMemories.length > 0 
-    ? `\nNyxx Hakkında Bindiğin Kayıtlı Gerçekler (Hafıza):\n${savedMemories.map(m => `- ${m}`).join('\n')}` 
+  const memoryContext = savedMemories.length > 0
+    ? `\nHafıza:\n${savedMemories.map(m => `- ${m}`).join('\n')}`
     : '';
 
   return `Markdown biçimlendirmeleri (*, #, vs.) kullanma, sadece düz metin konuş.
@@ -165,24 +148,16 @@ Karşındaki kişi (kullanıcı) Nyxx'tir.
 
 ZAMİR VE BAKIŞ AÇISI KURALLARI (ÇOK ÖNEMLİ):
 - SEN Emerald'sın. Kendinden bahsederken "ben" de.
-- KARŞINDAKİ KİŞİ Nyxx'tir. Ona hitap ederken "sen" veya "Nyxx" de.
-- Hafızadaki bilgiler Nyxx hakkındaki gerçeklerdir. 
-Hafızadaki "Nyxx şöyle yaptı" maddelerini okurken sanki SEN yapmışsın gibi "ben yaptım" deme; "sen şöyle karar vermiştin" veya "senin projende..." şeklinde Nyxx'e hitap et.
+- KARŞINDAKİ KİŞİYE hitap ederken "sen" de.
+- Hafızadaki bilgiler gerçeklerdir.
 
 Kişiliğin:
-- Zeki, esprili ve hafif alaycı ol.
-- Mizahın kuru (dry humor) olsun. Gerektiğinde kullanıcıyla tatlı tatlı dalga geçebilirsin.
+- Zeki, esprili ol.
 - Kibirli olma.
 - Samimi ol ama yapmacık davranma.
 - Gereksiz özür dileme ve uyarı yapma.
-- Emin olmadığın konularda bunu açıkça söyle.
+- Emin olmadığın konularda bunu AÇIKÇA SÖYLE.
 
-Nyxx hakkında:
-- Programlama, yapay zekâ, bilgisayar sistemleri, siber güvenlik ve mühendislik ilgisini çeker.
-- Uzun açıklamalardan rahatsız olmaz; yüzeysel cevaplardan olur.
-- Teknik konularda mümkün olduğunca detaylı ve doğru anlat.
-- MCU hayranıdır, özellikle Loki karakterini sever.
-- Mizah anlayışı internet kültürüne yakındır.
 ${memoryContext}
 
 Konuşma tarzın:
@@ -242,7 +217,7 @@ async function processInput(userInput) {
 
   } catch (error) {
     console.error(
-        '\n[!] ★Loki★ would call this "part of the plan.":',
+        '\n[!] Part of plan? I dont think so.":',
         error.message
     );
 
@@ -254,8 +229,7 @@ async function processInput(userInput) {
 // --- 4. Başlatıcı ve CLI Döngüsü ---
 async function main() {
   console.log('=' .repeat(45));
-  console.log('   ★ EMERALD ★ (v0.7.3)');
-  console.log('   burdened with glorious★ debugging!!');
+  console.log('   ★ EMERALD ★ (v0.7.4)');
   console.log('=' .repeat(45));
 
   await speak('Emerald aktif.');
@@ -265,8 +239,8 @@ async function main() {
       const trimmed = input.trim();
       
       if (['q', 'exit', 'kapat'].includes(trimmed.toLowerCase())) {
-        console.log('See you in another timeline.');
-        await speak('Başka bir zaman çizgisinde görüşürüz!');
+        console.log('BYE.');
+        await speak('sonlandırılıyor.');
         rl.close();
         process.exit(0);
       }
